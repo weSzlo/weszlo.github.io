@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=2.0">
+<title>Şömine Sistemleri</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #8b6807;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* FULL PAGE FIRE + SMOKE BACKGROUND */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    background:
+      radial-gradient(45% 35% at 20% 100%, rgba(255, 90, 0, 0.30), transparent 70%),
+      radial-gradient(40% 30% at 50% 100%, rgba(255, 170, 0, 0.24), transparent 72%),
+      radial-gradient(35% 30% at 80% 100%, rgba(255, 40, 0, 0.22), transparent 70%),
+      radial-gradient(60% 45% at 50% 115%, rgba(255, 210, 120, 0.12), transparent 78%);
+    filter: blur(6px) saturate(115%);
+    animation: fireFlicker 3.6s ease-in-out infinite alternate;
+}
+
+body::after {
+    background:
+      radial-gradient(30% 22% at 18% 78%, rgba(160, 160, 160, 0.11), transparent 72%),
+      radial-gradient(35% 26% at 50% 70%, rgba(185, 185, 185, 0.10), transparent 74%),
+      radial-gradient(28% 20% at 78% 76%, rgba(140, 140, 140, 0.10), transparent 72%);
+    filter: blur(16px);
+    animation: smokeDrift 14s linear infinite;
+    opacity: 0.9;
+}
+
+/* Keep page content above animation */
+.hero,
+.section,
+.cta {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fireFlicker {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.70;
+        filter: blur(6px) saturate(110%);
+    }
+    50% {
+        transform: translateY(-6px) scale(1.04);
+        opacity: 0.88;
+        filter: blur(7px) saturate(125%);
+    }
+    100% {
+        transform: translateY(-2px) scale(1.02);
+        opacity: 0.76;
+        filter: blur(6px) saturate(118%);
+    }
+}
+
+@keyframes smokeDrift {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.70;
+    }
+    50% {
+        transform: translate3d(-10px, -16px, 0) scale(1.03);
+        opacity: 0.92;
+    }
+    100% {
+        transform: translate3d(12px, -28px, 0) scale(1.06);
+        opacity: 0.64;
+    }
+}
+
+/* HERO */
+.hero {
+    min-height: 55vh;
+    background: url('image/somine.png') center/cover no-repeat;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* SECTION */
+.section {
+    padding: 80px 0;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+/* IMAGE */
+.image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* TEXT */
+.text h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.text p {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+/* PRODUCTS */
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card h3 {
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: #1a1a1a;
+}
+
+.cta .btn {
+    padding: 15px 30px;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cta .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>ŞÖMİNE SİSTEMLERİ</h1>
+</section>
+
+<!-- TANITIM -->
+<section class="section">
+    <div class="container grid">
+        <div class="image">
+            <img src="image/somine.png">
+        </div>
+        <div class="text">
+            <h2>Modern ve Şık Tasarım</h2>
+            <p>
+                Mekanınıza estetik ve sıcaklık katan özel şömine çözümleri.
+                Yüksek kalite malzeme ve modern tasarım ile üretilmektedir.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ÜRÜNLER -->
+<section class="section">
+    <div class="container">
+        <div class="products">
+            
+            <div class="card">
+                <img src="image/somine2.jpeg">
+                <h3>Duvar Tipi Şömine</h3>
+            </div>
+
+            <div class="card">
+                <img src="image/sömine3.png">
+                <h3>Minimal Şömine</h3>
+            </div>
+
+            <div class="card">
+                <img src="image/sömine4.png">
+                <h3>Lüks Seri</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Size Özel Şömine Tasarımı</h2>
+    <br>
+    <a class="btn" href="mobilya-website.html#iletisim">Teklif Al</a>
+</section>
+
+</body>
+</html>

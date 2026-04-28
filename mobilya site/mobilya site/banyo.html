@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banyo Tasarımları</title>
+    <style>
+        :root {
+            --bg: #0f1115;
+            --card: #171a21;
+            --soft: #202532;
+            --text: #e7eaf1;
+            --muted: #b6bdcb;
+            --accent: #7bd3ff;
+            --accent-2: #8ef7c8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at top right, #1a2130 0%, var(--bg) 45%);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Water Glow + Steam Background Animation */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            background:
+                radial-gradient(32% 25% at 15% 18%, rgba(123, 211, 255, 0.13), transparent 72%),
+                radial-gradient(28% 24% at 78% 16%, rgba(142, 247, 200, 0.10), transparent 70%),
+                radial-gradient(36% 28% at 52% 88%, rgba(123, 211, 255, 0.09), transparent 72%);
+            filter: blur(8px) saturate(108%);
+            animation: waterDrift 14s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            background:
+                radial-gradient(28% 20% at 18% 72%, rgba(205, 220, 235, 0.09), transparent 74%),
+                radial-gradient(34% 24% at 52% 68%, rgba(190, 205, 220, 0.08), transparent 76%),
+                radial-gradient(26% 20% at 82% 74%, rgba(175, 195, 210, 0.08), transparent 74%);
+            filter: blur(16px);
+            opacity: 0.8;
+            animation: steamFlow 20s linear infinite;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            min-height: 62vh;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(rgba(8, 10, 14, 0.55), rgba(8, 10, 14, 0.55)),
+                url("image/banyo3.jpeg") center/cover no-repeat;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 4rem);
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            margin: 14px auto 0;
+            max-width: 720px;
+            color: #d7ddea;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        .section {
+            padding: 76px 0;
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .intro img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .intro h2,
+        .products h2,
+        .cta h2 {
+            margin-top: 0;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+        }
+
+        .intro p {
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        .products-grid {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--soft), var(--card));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 1.12rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .cta {
+            text-align: center;
+            background: linear-gradient(120deg, #162031, #1c2737);
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .cta p {
+            color: var(--muted);
+            max-width: 760px;
+            margin: 0 auto 24px;
+        }
+
+        .cta .btn {
+            border: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #0d1117;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .cta .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        footer {
+            text-align: center;
+            color: #9ca6ba;
+            padding: 28px 14px 34px;
+            font-size: 0.92rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes waterDrift {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 0.65;
+            }
+            50% {
+                transform: translate3d(-10px, -6px, 0) scale(1.03);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(12px, 4px, 0) scale(1.05);
+                opacity: 0.72;
+            }
+        }
+
+        @keyframes steamFlow {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 0.56;
+            }
+            50% {
+                transform: translate3d(-8px, -18px, 0) scale(1.04);
+                opacity: 0.82;
+            }
+            100% {
+                transform: translate3d(10px, -30px, 0) scale(1.08);
+                opacity: 0.52;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .intro {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body::before {
+                opacity: 0.72;
+            }
+
+            body::after {
+                opacity: 0.62;
+                filter: blur(14px);
+            }
+
+            .hero {
+                min-height: 52vh;
+                padding: 44px 14px;
+            }
+
+            .section {
+                padding: 56px 0;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card img {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>BANYO TASARIMLARI</h1>
+            <p>
+                Fonksiyonel, estetik ve uzun ömürlü banyo çözümleri ile yaşam alanınızı
+                modern bir konfora dönüştürüyoruz.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container intro">
+            <img src="image/banyo2.jpeg" alt="Modern banyo tasarımı" />
+            <div>
+                <h2>Modern ve Kullanışlı Banyo Konseptleri</h2>
+                <p>
+                    Nem dayanımı yüksek yüzeyler, doğru aydınlatma planı ve sade çizgilerle
+                    banyonuza ferah bir atmosfer kazandırıyoruz. Projelerimizde estetik
+                    görünümü, günlük kullanım kolaylığı ile birleştiriyoruz.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section products">
+        <div class="container">
+            <h2>Popüler Banyo Çözümleri</h2>
+            <div class="products-grid">
+                <article class="card">
+                    <img src="image/banyo.png" alt="Duş alanı tasarımı" />
+                    <div class="card-body">
+                        <h3>Duş Alanı Tasarımı</h3>
+                        <p>Kaymaz zemin, cam panel ve modern armatürlerle güvenli şıklık.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="image/banyo3.jpeg" alt="Lavabo ve dolap çözümleri" />
+                    <div class="card-body">
+                        <h3>Lavabo & Dolap</h3>
+                        <p>Alanı verimli kullanan depolama çözümleri ve yalın görünüm.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="image/banyo2.jpeg" alt="Özel seramik kaplama" />
+                    <div class="card-body">
+                        <h3>Seramik & Kaplama</h3>
+                        <p>Kolay temizlenen, dayanıklı ve zamansız yüzey alternatifleri.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container">
+            <h2>Size Özel Banyo Projesi</h2>
+            <p>
+                Ölçünüze ve tarzınıza uygun banyo tasarımını birlikte planlayalım.
+                Keşif ve teklif süreci için hemen iletişime geçin.
+            </p>
+            <a class="btn" href="mobilya-website.html#iletisim">Teklif Al</a>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Banyo Tasarımları — Tüm hakları saklıdır.
+    </footer>
+</body>
+</html>

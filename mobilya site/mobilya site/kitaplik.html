@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitaplık Sistemleri</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: #8b6807;
+}
+
+.hero {
+    min-height: 55vh;
+    background: url('image/kitaplık.png') center/cover no-repeat;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.text h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.text p {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card h3 {
+    padding: 15px;
+    font-size: 18px;
+    color: #d6b96f;
+}
+
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: #1a1a1a;
+}
+
+.cta .btn {
+    padding: 15px 30px;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cta .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+@media(max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>KİTAPLIK SİSTEMLERİ</h1>
+</section>
+
+<section class="section">
+    <div class="container grid">
+        <div class="image">
+            <img src="image/kitaplık.png" alt="Kitaplık">
+        </div>
+        <div class="text">
+            <h2>Fonksiyonel ve Estetik Kitaplıklar</h2>
+            <p>
+                Yaşam alanlarınıza düzen ve şıklık katan modern kitaplık çözümleri.
+                Ahşabın sıcak dokusunu çağdaş çizgilerle birleştirerek size özel üretim sunuyoruz.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="products">
+            <div class="card">
+                <img src="image/kitaplık.png" alt="Duvar Tipi Kitaplık">
+                <h3>Duvar Tipi Kitaplık</h3>
+            </div>
+
+            <div class="card">
+                <img src="image/moduler-kıtaplık.jpeg" alt="Modüler Kitaplık">
+                <h3>Modüler Kitaplık</h3>
+            </div>
+
+            <div class="card">
+                <img src="image/ozel-tasarım-kıtaplık.png" alt="Özel Tasarım Kitaplık">
+                <h3>Özel Tasarım Kitaplık</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Size Özel Kitaplık Tasarımı</h2>
+    <br>
+    <a class="btn" href="mobilya-website.html#iletisim">Teklif Al</a>
+</section>
+
+</body>
+</html>

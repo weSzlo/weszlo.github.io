@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Ünitesi | Aymine Mobilya</title>
+  <style>
+    :root{
+      --bg:#0f131a;
+      --panel:#171d27;
+      --panel-2:#1c2431;
+      --text:#eef2f7;
+      --muted:#b8c3d2;
+      --accent:#c7a66a;
+      --line:rgba(255,255,255,.08);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top right, #1d2532 0%, var(--bg) 45%);
+      color:var(--text);
+      line-height:1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before{
+      background:
+        radial-gradient(35% 28% at 18% 14%, rgba(215,178,120,0.14), transparent 72%),
+        radial-gradient(32% 24% at 82% 18%, rgba(231,201,143,0.11), transparent 74%),
+        radial-gradient(40% 30% at 52% 88%, rgba(199,166,106,0.10), transparent 76%);
+      filter: blur(8px) saturate(112%);
+      animation: goldGlowDrift 15s ease-in-out infinite alternate;
+    }
+
+    body::after{
+      background:
+        radial-gradient(30% 22% at 20% 72%, rgba(190,197,210,0.09), transparent 74%),
+        radial-gradient(34% 24% at 54% 68%, rgba(170,178,193,0.08), transparent 76%),
+        radial-gradient(28% 20% at 82% 76%, rgba(160,170,185,0.08), transparent 74%);
+      filter: blur(16px);
+      opacity: 0.78;
+      animation: mistFlow 22s linear infinite;
+    }
+
+    .container{
+      width:min(1150px,92%);
+      margin:0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero{
+      min-height:52vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:64px 20px;
+      background:
+        linear-gradient(rgba(10,12,18,.58), rgba(10,12,18,.58)),
+        url("image/tvunite.jpeg") center/cover no-repeat;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:clamp(2rem,5vw,4rem);
+      letter-spacing:1px;
+    }
+
+    .hero p{
+      margin:14px auto 0;
+      max-width:760px;
+      color:#d4dce8;
+      font-size:clamp(1rem,2vw,1.2rem);
+    }
+
+    .section{padding:72px 0;}
+    .intro{
+      text-align:center;
+      max-width:850px;
+      margin:0 auto 28px;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-top:24px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--panel-2),var(--panel));
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 34px rgba(0,0,0,.35);
+    }
+
+    .card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .card-body{padding:16px 16px 18px}
+    .card h3{margin:0 0 8px;font-size:1.16rem}
+    .card p{margin:0;color:var(--muted);font-size:.96rem}
+
+    .badge{
+      display:inline-block;
+      margin-bottom:10px;
+      font-size:.72rem;
+      letter-spacing:.5px;
+      color:#0f1319;
+      background:linear-gradient(90deg,#d5b278,#e8ca92);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+    }
+
+    .cta{
+      text-align:center;
+      padding:68px 20px 84px;
+      border-top:1px solid var(--line);
+      background:linear-gradient(125deg,#182131,#1b2330);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn{
+      border:none;
+      border-radius:10px;
+      padding:14px 28px;
+      font-weight:700;
+      color:#121722;
+      background:linear-gradient(90deg,#d5b278,#efd39f);
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-block;
+      transition:transform .2s ease, filter .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px); filter:brightness(1.05)}
+
+    @keyframes goldGlowDrift{
+      0%{transform: translate3d(0,0,0) scale(1); opacity: 0.66;}
+      50%{transform: translate3d(-10px,-6px,0) scale(1.04); opacity: 0.90;}
+      100%{transform: translate3d(12px,4px,0) scale(1.06); opacity: 0.72;}
+    }
+
+    @keyframes mistFlow{
+      0%{transform: translate3d(0,0,0) scale(1); opacity: 0.54;}
+      50%{transform: translate3d(-8px,-18px,0) scale(1.04); opacity: 0.80;}
+      100%{transform: translate3d(10px,-30px,0) scale(1.08); opacity: 0.50;}
+    }
+
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      body::before{opacity:.72}
+      body::after{opacity:.60; filter: blur(14px)}
+      .hero{min-height:46vh; padding:48px 14px}
+      .section{padding:56px 0}
+      .grid{grid-template-columns:1fr}
+      .card img{height:220px}
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <h1>TV ÜNİTESİ</h1>
+      <p>Modern yaşam alanlarına özel, şık ve fonksiyonel TV ünitesi çözümleri.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="intro">
+        Mekân ölçüsüne ve stiline göre kişiselleştirilebilen TV ünitesi koleksiyonumuzda;
+        depolama, estetik ve dayanıklılığı bir arada sunuyoruz.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <img src="image/pre-tvunıte.jpeg" alt="Duvar Tipi TV Ünitesi" />
+          <div class="card-body">
+            <span class="badge">Varyasyon 01</span>
+            <h3>Duvar Tipi TV Ünitesi</h3>
+            <p>Minimal çizgilerle duvarla bütünleşen, sade ve modern bir görünüm.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="image/depo-tv.jpeg" alt="Depolamalı TV Ünitesi" />
+          <div class="card-body">
+            <span class="badge">Varyasyon 02</span>
+            <h3>Depolamalı TV Ünitesi</h3>
+            <p>Kapaklı ve açık raf kombinasyonuyla yüksek depolama kapasitesi sunar.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="image/tvunite.jpeg" alt="Premium TV Ünitesi" />
+          <div class="card-body">
+            <span class="badge">Varyasyon 03 (Yeni)</span>
+            <h3>Premium TV Ünitesi</h3>
+            <p>Ahşap dokular ve modern detaylarla yaşam alanına güçlü bir karakter katar.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>TV Ünitenizi Birlikte Tasarlayalım</h2>
+    <p style="color:#c7d0dd; max-width:760px; margin:10px auto 24px;">
+      Ölçü, renk ve malzeme tercihinize uygun özel TV ünitesi tasarımları sunuyoruz.
+    </p>
+    <a class="btn" href="mobilya-website.html#iletisim">Teklif Al</a>
+  </section>
+</body>
+</html>
