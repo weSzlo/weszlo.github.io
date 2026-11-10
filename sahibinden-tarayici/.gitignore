@@ -1,0 +1,6 @@
+.env
+ilanlar.db
+.tarayici-profili/
+raporlar/
+__pycache__/
+tarama.log

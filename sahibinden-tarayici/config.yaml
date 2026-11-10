@@ -1,0 +1,77 @@
+# ------------------------------------------------------------------
+# Sahibinden Fırsat Tarayıcı - Ayarlar
+# ------------------------------------------------------------------
+# EN SAĞLAM YÖNTEM: sahibinden.com'da tarayıcınızda istediğiniz filtreyi
+# (il, ilçe, kategori, fiyat aralığı vs.) seçin, adres çubuğundaki URL'yi
+# kopyalayıp aşağıdaki "url" alanına yapıştırın. Program o aramayı her gün
+# tarar, sayfa sayısını ve sıralamayı kendisi ayarlar.
+#
+# tip:  arac   -> fiyat, aynı seri/model + yıl grubundaki medyan ile kıyaslanır
+#       emlak  -> m² fiyatı, aynı ilçe/mahalle + oda sayısı medyanı ile kıyaslanır
+#       devren -> m² varsa m² fiyatı, yoksa fiyat; aynı ilçe medyanı ile kıyaslanır
+# ------------------------------------------------------------------
+
+aramalar:
+  # --- ARAÇLAR (Tüm Türkiye) ---
+  - ad: "Otomobil - Tüm Türkiye"
+    tip: arac
+    url: "https://www.sahibinden.com/otomobil?sorting=date_desc"
+    max_sayfa: 20          # 20 x 50 = en yeni 1000 ilan
+
+  - ad: "Arazi/SUV/Pickup - Tüm Türkiye"
+    tip: arac
+    url: "https://www.sahibinden.com/arazi-suv-pickup?sorting=date_desc"
+    max_sayfa: 10
+
+  # --- EMLAK (Bursa: Osmangazi, Yıldırım, Nilüfer) ---
+  # Not: Bursa il kodu 16'dır. İlçe filtresini sitede seçip URL'yi
+  # buraya yapıştırmanız en garantisidir (ilçe kodlarını site belirler).
+  - ad: "Satılık Konut - Bursa"
+    tip: emlak
+    url: "https://www.sahibinden.com/satilik-daire?address_city=16&sorting=date_desc"
+    ilceler: ["Osmangazi", "Yıldırım", "Nilüfer"]   # sonuçlar bu ilçelere süzülür
+    max_sayfa: 20
+
+  - ad: "Kiralık Konut - Bursa"
+    tip: emlak
+    url: "https://www.sahibinden.com/kiralik-daire?address_city=16&sorting=date_desc"
+    ilceler: ["Osmangazi", "Yıldırım", "Nilüfer"]
+    max_sayfa: 10
+
+  # --- DEVREN (Bursa: Osmangazi, Yıldırım, Nilüfer) ---
+  - ad: "Devren Satılık - Bursa"
+    tip: devren
+    url: "https://www.sahibinden.com/devren-satilik?address_city=16&sorting=date_desc"
+    ilceler: ["Osmangazi", "Yıldırım", "Nilüfer"]
+    max_sayfa: 5
+
+  - ad: "Devren Kiralık - Bursa"
+    tip: devren
+    url: "https://www.sahibinden.com/devren-kiralik?address_city=16&sorting=date_desc"
+    ilceler: ["Osmangazi", "Yıldırım", "Nilüfer"]
+    max_sayfa: 5
+
+# Fırsat kriterleri
+firsat:
+  # Fiyat, karşılaştırma grubunun medyanının bu oranının altındaysa fırsat sayılır.
+  # 0.85 = piyasanın en az %15 altında
+  esik_oran: 0.85
+  # Bunun da altındaysa "çok ucuz - dolandırıcılık/hatalı fiyat riski" uyarısı eklenir.
+  supheli_oran: 0.50
+  # Bir grubun medyanına güvenmek için gereken en az ilan sayısı
+  min_grup_ilan: 6
+  # Medyan hesabında kaç günlük geçmiş ilan kullanılsın (veritabanında birikir)
+  gecmis_gun: 45
+  # Araçlarda: ilanın KM'si grubun medyan KM'sinin bu katından fazlaysa
+  # ucuzluğu KM'den kaynaklı sayılır ve fırsat listesine alınmaz.
+  arac_max_km_kat: 1.3
+
+# Tarama davranışı
+tarama:
+  # Sayfalar arası bekleme (saniye) - siteyi yormamak ve engellenmemek için
+  bekleme_min: 4
+  bekleme_max: 9
+  # Görünür tarayıcı ile çalış (Cloudflare/robot doğrulamasını geçmek için önerilir)
+  gorunur_tarayici: true
+  # Doğrulama sayfası çıkarsa elle çözmeniz için beklenecek süre (saniye)
+  dogrulama_bekleme: 120
